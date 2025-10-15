@@ -1,6 +1,5 @@
 # Anleitung zum Python-Skript 'WLV_pyqgis_ZEMOKOST'
 
-Autoren: KS, NC, BT (ms.gis,); JK(WLV); BK(BFW)
 
 ZEMOKOST ist ein hydrologisches Niederschlags-Abfluss-Modell, entwickelt am Institut für Naturgefahren des
 Bundesforschungszentrums für Wald (BFW), das in Österreich zur Gefahrenzonenplanung eingesetzt wird und auf
