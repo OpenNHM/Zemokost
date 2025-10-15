@@ -1,125 +1,5 @@
 # ZEMOKOST v2.0.1
 
-<!--
-<style>
-/* === USER MANUAL STANDARD STYLING === */
-
-/* Schriftart und Basis */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Überschriften-Hierarchie */
-h1 { 
-  font-size: 28px; 
-  color: #2c3e50; 
-  border-bottom: 3px solid #3498db; 
-  padding-bottom: 10px;
-  margin: 30px 0 20px 0;
-}
-
-h2 { 
-  font-size: 22px; 
-  color: #1f393b; 
-  border-bottom: 1px solid #bdc3c7;
-  padding-bottom: 5px;
-  margin: 25px 0 15px 0;
-}
-
-h3 { 
-  font-size: 18px; 
-  color: #1f393b; 
-  margin: 20px 0 12px 0;
-}
-
-h4 { 
-  font-size: 16px; 
-  color: #1f393b;
-  margin: 15px 0 10px 0;
-}
-
-/* Text und Absätze */
-p { 
-  line-height: 1.7;
-  margin-bottom: 16px;
-  text-align: justify;
-}
-
-/* Listen (optimal für Anleitungen) */
-ul, ol { 
-  line-height: 1.6;
-  margin: 15px 0;
-  padding-left: 25px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-/* Verschachtelte Listen */
-ul ul, ol ol {
-  margin: 8px 0;
-}
-
-/* Tabellen (wichtig für Parameter) */
-table { 
-  border-collapse: collapse; 
-  width: 100%;
-  margin: 20px 0;
-  font-size: 13px;
-}
-
-th, td { 
-  border: 1px solid #ddd; 
-  padding: 12px 8px;
-  text-align: left;
-}
-
-th { 
-  background-color: #f8f9fa;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-/* Code und technische Begriffe */
-code {
-  background-color: #f1f2f6;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-}
-
-/* Hervorhebungen */
-strong { color: #2c3e50; }
-em { color: #7f8c8d; }
-
-/* Workflow-Pfeile und Navigation */
-blockquote {
-  border-left: 4px solid #3498db;
-  margin: 20px 0;
-  padding: 10px 20px;
-  background-color: #f8f9fa;
-  font-style: italic;
-  font-size: 14px;
-}
-
-/* Trennlinien */
-hr {
-  border: none;
-  border-top: 2px solid #ecf0f1;
-  margin: 30px 0;
-}
-
-</style>
--->
-
 
 ### Table of Contents
 - [About ZEMOKOST](#about-zemokost)
@@ -153,7 +33,7 @@ This guide serves as the user manual for ZEMOKOST v2.0.1. It explains all the st
 - Rainfall data input
 - Simulation and results
 
-
+> - Full description in the dissertation by Bernhard Kohl https://doi.org/10.5281/zenodo.17398421 (German only)
 
 ## Setup and Activation
 
@@ -273,7 +153,7 @@ A drop-down menu allows the user to select whether the SRC or RCC classes are re
 
 Detailed information how to assess SRC and RCC can be found here:
 
-https://www.researchgate.net/publication/273761280_A_Simple_Code_of_Practice_for_the_Assessment_of_Surface_Runoff_Coefficients_for_Alpine_Soil-Vegetation_Units_in_Torrential_Rain_Version_20 
+https://www.bfw.gv.at/wp-content/uploads/BFW_prov_code_of_practice_23_12_2011.pdf
 
 ### Channel topology
 
