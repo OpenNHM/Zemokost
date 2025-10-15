@@ -1,4 +1,4 @@
-# Toolbox 'WLV_pyqgis_ZEMOKOST' 1.0
+# Toolbox 'WLV_pyqgis_ZEMOKOST' 1.5.0
 <!--
 <style>
 /* === USER MANUAL STANDARD STYLING === */
@@ -126,6 +126,30 @@ hr {
 
 
 ---
+> Currently, the toolbox is available in **German only**. See the list below for parameter translations.
+Note: The exported CSV is provided in German only. However, since only the data itself is copied and no textual labels are required, the values **can be directly transferred** to the English ZEMOKOST version in the worksheet “catchment-definition”.
+**Attention: ZEMOKOST uses a comma (,) as the decimal separator.**
+
+| German                  | English               | Description                                             |
+|-------------------------|---------------------|---------------------------------------------------------|
+| TEZG                    | Sub-basin            | Identifier of the sub-basin                             |
+| K.O.                    | j.in      | Inflow point of the junction                             |
+| K.U.                    | j.out     | Outflow point of the junction                            |
+| Bezeichnung/Ergaenzung  | Name / Description   | Name or description of the sub-basin                    |
+| Flaeche                 | Area                 | Area of the sub-basin [km²]                             |
+| F-Laenge                | Flow Length          | Surface flow path length [m]                             |
+| F-Neigung               | Flow Slope           | Average slope of the sub-basin                            |
+| Nat. Ret.               | Natural Retention    | Retention percentage [%]                                  |
+| Basisabfl.              | Baseflow             | Baseflow [m³/s]                                          |
+| AKL                     | SRC | Surface runoff class                                     |
+| RKL                     | RCC| Soil roughness coefficient                               |
+| ZAF                     | IFF     | Interflow factor (classes 1–7)                           |
+| ZAA                     | IFP     | Portion of interflow [%]                               |
+| G-Laenge                | Channel Length       | Length of the main channel [m]                           |
+| G-Neigung               | Channel Slope        | Slope of the main channel                                 |
+| d90                     |  d90       | Characteristic grain diameter (d90) [m]                 |
+
+Thus, the CSV provides an (almost) complete overview of all input data required for the rainfall-runoff model ZEMOKOST. The parameters are organized in the output file so that they can be directly transferred to the ZEMOKOST input interface via copy-paste.
 
 # Manual for Python Script 'WLV_pyqgis_ZEMOKOST'
 
@@ -137,39 +161,38 @@ The Python script **'WLV_pyqgis_ZEMOKOST'** was developed to automatically prepa
 
 ## Input Data
 
-### 1. **Digital Elevation Model (DEM)**
+1. **Digital Elevation Model (DEM)**
 Raster layer with elevation information
 - Recommended resolution: 10 m × 10 m
 - Must have a valid coordinate system
 
-### 2. Subcatchment Areas (SUBB)
+2. **Subcatchment Areas (TEZG)**
 Polygon shapefile with sub-basins
 - Unique subb.nr
 - Inflow junction (j.in)
 - Outflow junction (j. out)
 - Optional: designation
 
-### 3. Main Channel
+3. **Main Channel (Hauptgerinne)**
 Line shapefile with one main channel branch per SUBB
 
-### 4. Detailed Channel Network (optional)
+4. **Detailed Channel Network (Feingerinne) (*optional*)**
 Line shapefile with detailed channel network
 - For more accurate calculation of flow path length
 
-### 5. Surface Runoff Coefficient Class Areas (SRC)
+5. **Surface Runoff Coefficient Class Areas *SRC* (AKL)**
 Polygon shapefile with areas of the same runoff class
 - Attribute field with SRC value (0–6)
 
-### 6. Surface Roughness Class  Areas (RCC)
+6. **Surface Roughness Class  Areas *RCC* (RKL)**
 Polygon shapefile with areas of the same roughness class
 - Attribute field with RCC value (1–6)
 
-### 7. Interflow Areas (IFP/IFF) (optional)
+7. **Interflow Areas *IFF* (ZAF) (*optional*)**
 Polygon shapefile with:
-- IFP field (interflow portion, 0–7)
-- IFF field (interflow factor, 0–1)
+- IFF field (interflow factor, 0–7)
 
-### 8. Output Directory
+8. **Output Directory (Ausgabeverzeichnis)**
 - Path to a folder where results will be saved
 - Option: Save intermediate results
 
@@ -179,17 +202,17 @@ Polygon shapefile with:
 
 ## Tool Calculation Steps
 
-### 1. X / Y – Centroid Coordinates
+1. **X / Y – Centroid Coordinates**
 
 For each SUBB, the geometry centroid is calculated. The X and Y coordinates of this point are stored as "ctr_x" and "ctr_y". These values represent the spatial location of the SUBB.
 
-### 2. Area [km²] - Sub-catchment Areas
+2. **Area [km²] - Sub-catchment Areas**
 
 The area of each SUBB is calculated from the polygon geometry. The area is determined in square meters and then divided by 1,000,000 to obtain the value in km².
 
 **Result field:** "Flaeche [km²]"
 
-### 3. F-Length [m] – Flow Path Length
+3.**F-Length [m] – Flow Path Length**
 
 The mean flow path length is calculated using the "downslope_distance_to_stream" function from the WhiteboxTools package. The distance from the highest point (ridge) to the channel (stream) is determined on a raster basis.
 
@@ -209,13 +232,13 @@ For each SUBB, the mean flow path length is calculated from the above raster. Th
 
 **Result field:** "F-Laenge [m]"
 
-### 4. F-Slope [1] – Surface Slope
+4. **F-Slope [1] – Surface Slope**
 
 The slope is calculated from the digital elevation model (DEM) using the GDAL "slope" tool. The output is in percent but is divided by 100 to obtain the dimensionless value (e.g., 0.12 for 12%). The mean slope per SUBB is also determined using zonal statistics.
 
 **Result field:** "F-Neigung [1]"
 
-### 5. Derivation of Surface Runoff Classes (SRC) and Roughness Coefficient Classes (RCC)
+5. **Derivation of Surface Runoff Classes (SRC) and Roughness Coefficient Classes (RCC)**
 
 The polygon shapefiles SRC layer (areas of equal runoff coefficient class) and RCC layer (areas of equal roughness class) contain an attribute field with the respective classification values SRC and RCC (SRC values: 0 to 6; RCC values: 1 to 6). Both attributes can also be present together in a single file.
 
@@ -227,7 +250,7 @@ The calculated area fractions per class are stored in a dictionary. For each SUB
 
 > **Note:** The use of shapefiles is recommended, as GPKG files are not fully supported according to the script.
 
-### 6. Derivation of Interflow Factor (IFP) and Interflow Fraction (IFF)
+6. **Derivation of Interflow Factor (IFP) and Interflow Fraction (IFF)**
 
 Optionally, a polygon layer with areas of equal IFP and IFF values can be loaded. IFP: values from 0 to 7 (factor); IFF: values from 0 to 1 (fraction).
 
@@ -259,11 +282,11 @@ In the script, the original very slow interflow factor values (IFP) >4 are repla
 
 The masking ensures that only cells with valid IFP-IFF combinations are used.
 
-### 7. C-Length [m] – Channel Length
+7. **C-Length [m] – Channel Length**
 
 The channel length of a sub-catchment is determined by intersecting the main channel with the respective sub-area. After geometric merging (dissolve) per SUBB-ID, the length of the resulting channel line is calculated directly from the geometry.
 
-### 8. C-Slope [1] – Channel Slope
+8.** C-Slope [1] – Channel Slope**
 
 In the script, the channel slope per sub-catchment is determined by first intersecting the channel network with the SUBB and merging it into one line per area. For this channel line, the length is calculated and in parallel the minimum and maximum elevation are derived from the DEM. The channel slope is then calculated as a dimensionless value from the elevation difference and line length (elevation difference divided by channel length).
 
