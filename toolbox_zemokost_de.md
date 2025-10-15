@@ -1,4 +1,4 @@
-# Toolbox 'WLV_pyqgis_ZEMOKOST' 1.0
+# Toolbox 'WLV_pyqgis_ZEMOKOST' 1.5.0
 <!--
 <style>
 /* === USER MANUAL STANDARD STYLING === */
@@ -134,9 +134,9 @@ WhiteboxTools-Umgebung zur Durchführung hydrologischer und geostatistischer Ber
 6. **Rauheitsflächen (RKL)**: Polygon-Shapefile mit Flächen gleicher Rauheitsklasse
    - Attributfeld mit RKL-Wert (1–6)
 
-7. **Zwischenabflussflächen (ZAF/ZAA)** (*optional*): Polygon-Shapefile mit:
+7. **Zwischenabflussflächen (ZAF)** (*optional*): Polygon-Shapefile mit:
    - ZAF-Feld (Zwischenabflussfaktor, 0–7)
-   - ZAA-Feld (Zwischenabflussanteil, 0–1)
+
 
 8. **Ausgabeverzeichnis**
    - Pfad zu einem Ordner, in dem Ergebnisse gespeichert werden

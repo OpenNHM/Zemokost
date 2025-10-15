@@ -158,6 +158,8 @@ Die Benutzeroberfläche verwendet ein farbcodiertes System, um den Status der Da
 
 Jeder Parameter wird von Kommentarfeldern (<span style="color: #FF0000 !important; font-weight: bold !important;">◄</span>) begleitet, die kontextbezogene Anmerkungen und Anleitungen für die Dateneingabe bieten.
 
+> Wichtig: Alle Eingabedaten für ZEMOKOST **müssen ein Komma (,) als Dezimaltrennzeichen verwenden.** 
+
 ## Definition der Einzugsgebietsparameter
 
 Der Benutzer beginnt im erten Arbeitsblatt `main`, indem er das Einzugsgebiet beschreibt und die Datei zunächst mit einem spezifischen Dateinamen speichert.

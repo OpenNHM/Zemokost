@@ -153,6 +153,8 @@ This guide serves as the user manual for ZEMOKOST v2.0.1. It explains all the st
 - Rainfall data input
 - Simulation and results
 
+
+
 ## Setup and Activation
 
 ZEMOKOST (V2.0.1en) is implemented in Microsoft Excel 2013, using a comprehensive set of Visual Basic for Applications (VBA) macros. ZEMOKOST is compatible with all current desktop versions of Microsoft Excel, including Excel 2013, Excel 2016, Excel 2019, Excel 2021, and Microsoft 365 Excel.
@@ -185,6 +187,8 @@ The interface employs a color-coded system to indicate the status of data entry:
 | <span style="background-color: #f8cbad; color: black; padding: 2px 8px;">**Light Orange**</span> | Field | User input required |
 
 Each parameter is accompanied by comment fields (<span style="color: #FF0000 !important; font-weight: bold !important;">◄</span>) that provide contextual annotations and guidance for data entry.
+
+> Important: All input data for ZEMOKOST **must use a comma (,) as the decimal separator.** Make sure to convert numbers if your source uses a dot (.).
 
 ## Definition of Catchment Parameters
 
