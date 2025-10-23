@@ -3,7 +3,7 @@
 
 """
 Toolbox:        WLV_Tools
-Script:			Aufbereitung ZEMOKOST mit Zwischenabfluss, Version 1.4.0
+Script:			Aufbereitung ZEMOKOST mit Zwischenabfluss, Version 1.5.0
 
 Author:         KS, NC, BT (ms.gis,); JK(WLV); BK(BFW)
 QGIS Version:   > 3.40.9
@@ -12,6 +12,8 @@ Last updated:   2025-08-20
 
 -----------
 Change log:
+v1.5.0
+    - ZAF reclassification >=4 NoData
 v1.4.0
     - Corrected wZAF calculation
     - Corrected some changed issues from v1.3.0
@@ -576,7 +578,7 @@ class ZEMOKOST_GISDaten(QgsProcessingAlgorithm):
             clipTEZG = vlyr_tezg
 
         # Clip gerinne to TEZG
-        gerinne_path = os.path.join(temp_folder, f"gerinne_{uuid.uuid4().hex}.shp")
+        gerinne_path = temp_folder + '/'+ f"gerinne_{uuid.uuid4().hex}.shp" #gerinne_path = os.path.join(temp_folder, f"gerinne_{uuid.uuid4().hex}.shp")
         res17 = processing.run("native:clip", {
             'INPUT': gerinne,
             'OVERLAY': clipTEZG,
@@ -669,6 +671,7 @@ class ZEMOKOST_GISDaten(QgsProcessingAlgorithm):
                 callback = my_callback
             )
             rlyr_demFilled = QgsRasterLayer(corrected_dem_path, "rlyr_demFilled", "gdal")
+            feedback.pushInfo("corr dem:"+corrected_dem_path)
             lyrList.append(rlyr_demFilled)
 
             # Calculate flow accumulation raster (for ridge detection)
@@ -686,7 +689,7 @@ class ZEMOKOST_GISDaten(QgsProcessingAlgorithm):
             )
             rlyr_demFAcc = QgsRasterLayer(flow_accumulation_path, "rlyr_demFAcc", "gdal")
             lyrList.append(rlyr_demFAcc)
-
+            feedback.pushInfo("FAcc: "+flow_accumulation_path )
             # Reclassify flowacc to get ridges (acc val = 1,2)
             stats = rlyr_demFAcc.dataProvider().bandStatistics(1)
 
@@ -943,11 +946,11 @@ class ZEMOKOST_GISDaten(QgsProcessingAlgorithm):
             rlyr_rasTezgZAF = QgsRasterLayer(res25['OUTPUT'], "rlyr_rasTezgZAF", "gdal")
             lyrList.append(rlyr_rasTezgZAF)
 
-            # Reclassify ZAF raster
+            # Reclassify ZAF raster (>4=NoData; V.1_4_0 >3=NoData)
             res26 = processing.run("native:reclassifybytable", {
                 'INPUT_RASTER': rlyr_rasTezgZAF,
                 'RASTER_BAND': 1,
-                'TABLE': [1, 1, 1, 2, 2, 2, 3, 3, 3],
+                'TABLE': [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4],
                 'NO_DATA': -9999,
                 'RANGE_BOUNDARIES': 2,
                 'NODATA_FOR_MISSING': True,
