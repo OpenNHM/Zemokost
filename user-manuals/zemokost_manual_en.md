@@ -43,7 +43,7 @@ The program is structured across multiple worksheets, which are dynamically show
 
 The file ZEMOKOST-2_0_1en.xlsm is a macro-enabled Excel workbook, and macros must be activated for the program to function correctly.
 
-### Activation Macros
+### Excel settings needed to run functions properly
 
 This can be done via:
 
