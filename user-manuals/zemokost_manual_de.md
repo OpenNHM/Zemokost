@@ -43,7 +43,7 @@ Das Programm ist über mehrere Arbeitsblätter strukturiert, die je nach aktuell
 
 Die Datei ZEMOKOST-2_0_1.xlsm ist eine makrofähige Excel-Arbeitsmappe, und Makros müssen aktiviert werden, damit das Programm korrekt funktioniert.
 
-### Makros aktivieren
+### Erforderliche Excel-Einstellungen, um Funktionen korrekt auszuführen
 
 Dies kann erfolgen über:
 
