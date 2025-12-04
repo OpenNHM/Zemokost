@@ -24,7 +24,8 @@ The script is designed for use within the QGIS environment and utilizes Whitebox
 
 This repository also includes:
 
-- The WLV pyqgis preparation script
+- The WLV pyqgis preparation script for polygon input (WLV_pyqgis_ZEMOKOST.py)
+- The WLV pyqgis preparation script for raster input (WLV_pyqgis_raster_ZEMOKOST.py)
 - The documentation for the preparation script: [Documentation German](user-manuals/wlv_pyqgis_zemokost_de.md) (German)
 - The documentation for the preparation script: [Documentation English](user-manuals/wlv_pyqgis_zemokost_en.md) (English)
 
